@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>psyopcat | $psyopcat</title>
+  <meta name="description" content="PsyopCat spreads chaos with clever memes, stealth moves, and unstoppable viral energy across crypto." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cat: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#052e16',
+              ink: '#031a0d',
+              neon: '#39ff14',
+              slime: '#a3e635',
+            }
+          },
+          fontFamily: {
+            display: ['"Luckiest Guy"', 'cursive'],
+            body: ['"Nunito"', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 4s ease-in-out infinite',
+            'wiggle': 'wiggle 2.5s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+            'marquee': 'marquee 28s linear infinite',
+            'dollar-pump': 'dollarPump 0.7s ease-out forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-2deg)' },
+              '50%': { transform: 'rotate(2deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(57, 255, 20, 0.35)' },
+              '50%': { boxShadow: '0 0 40px rgba(57, 255, 20, 0.7)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            dollarPump: {
+              '0%': { opacity: '0', transform: 'translateY(0) scale(0.4)' },
+              '40%': { opacity: '1', transform: 'translateY(-28px) scale(1.35)' },
+              '100%': { opacity: '0', transform: 'translateY(-70px) scale(0.85)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #031a0d;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 197, 94, 0.35), transparent),
+        radial-gradient(circle at 15% 60%, rgba(57, 255, 20, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(163, 230, 53, 0.1), transparent 40%),
+        repeating-linear-gradient(
+          -12deg,
+          transparent,
+          transparent 18px,
+          rgba(34, 197, 94, 0.03) 18px,
+          rgba(34, 197, 94, 0.03) 19px
+        );
+    }
+    .cat-outline {
+      -webkit-text-stroke: 2px #14532d;
+      text-shadow:
+        3px 3px 0 #052e16,
+        6px 6px 0 rgba(57, 255, 20, 0.25);
+    }
+    .paw-grid {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 28c2 0 3.5 1.5 3.5 3.5S32 35 30 35s-3.5-1.5-3.5-3.5S28 28 30 28zm-8-6c1.5 0 2.5 1.2 2.5 2.5S23.5 27 22 27s-2.5-1.2-2.5-2.5S20.5 22 22 22zm16 0c1.5 0 2.5 1.2 2.5 2.5S39.5 27 38 27s-2.5-1.2-2.5-2.5S36.5 22 38 22zm-12-5c1.2 0 2 1 2 2s-.8 2-2 2-2-1-2-2 .8-2 2-2zm8 0c1.2 0 2 1 2 2s-.8 2-2 2-2-1-2-2 .8-2 2-2z' fill='%2322c55e' fill-opacity='0.07'/%3E%3C/svg%3E");
+    }
+    .dollar-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: #39ff14;
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.8), 2px 2px 0 #14532d;
+      animation: dollarPump 0.75s ease-out forwards;
+      will-change: transform, opacity;
+    }
+    .step-num {
+      background: linear-gradient(145deg, #39ff14, #16a34a);
+      box-shadow: 4px 4px 0 #052e16;
+    }
+    .cta-pop {
+      box-shadow: 5px 5px 0 #052e16;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta-pop:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 #052e16;
+    }
+    .cta-pop:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #052e16;
+    }
+    .social-x {
+      background: #0a0a0a;
+      border: 3px solid #22c55e;
+    }
+    .social-tg {
+      background: transparent;
+    }
+    .hero-banner {
+      mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    }
+    .copy-toast {
+      animation: dollarPump 1.2s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="font-body text-cat-100 antialiased overflow-x-hidden paw-grid">
+
+  <!-- Dollar pump layer -->
+  <div id="dollar-layer" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b-4 border-cat-600/40 bg-cat-ink/85 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <a href="#top" class="flex items-center gap-3 group" data-pump>
+        <img src="logo.png" alt="psyopcat logo" class="h-12 w-12 rounded-full border-4 border-cat-neon object-cover animate-wiggle" />
+        <span class="font-display text-2xl tracking-wide text-cat-neon cat-outline group-hover:text-cat-slime transition-colors">psyopcat</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-extrabold uppercase tracking-wider">
+        <a href="#about" class="hover:text-cat-neon transition-colors" data-pump>About</a>
+        <a href="#howtobuy" class="hover:text-cat-neon transition-colors" data-pump>How to Buy</a>
+        <a href="#chart" class="hover:text-cat-neon transition-colors" data-pump>Chart</a>
+      </nav>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="https://t.me/psyopcatRH" target="_blank" rel="noopener noreferrer" class="social-tg inline-flex h-11 w-11 items-center justify-center rounded-full overflow-hidden border-2 border-cat-500 hover:scale-110 transition-transform" data-pump aria-label="Telegram">
+          <img src="tg.png" alt="Telegram" class="h-full w-full object-cover" />
+        </a>
+        <a href="https://x.com/psyopcatRH" target="_blank" rel="noopener noreferrer" class="social-x inline-flex h-11 w-11 items-center justify-center rounded-full overflow-hidden hover:scale-110 transition-transform" data-pump aria-label="X / Twitter">
+          <img src="x.png" alt="X" class="h-7 w-7 object-contain" />
+        </a>
+        <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=TBA" target="_blank" rel="noopener noreferrer" class="cta-pop hidden sm:inline-flex rounded-xl bg-cat-neon px-4 py-2 font-extrabold text-cat-ink uppercase text-sm" data-pump>
+          Buy Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="relative min-h-screen flex flex-col justify-end pt-20">
+      <div class="absolute inset-0 hero-banner">
+        <img src="banner.png" alt="psyopcat banner" class="h-full w-full object-cover object-center opacity-90" />
+        <div class="absolute inset-0 bg-gradient-to-t from-cat-ink via-cat-ink/55 to-cat-950/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-cat-ink/70 via-transparent to-cat-ink/40"></div>
+      </div>
+
+      <div class="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 sm:pb-20">
+        <p class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-cat-neon cat-outline leading-none mb-4 animate-float">
+          psyopcat
+        </p>
+        <p class="max-w-xl text-lg sm:text-xl font-bold text-cat-100/95 mb-8 leading-relaxed">
+          PsyopCat spreads chaos with clever memes, stealth moves, and unstoppable viral energy across crypto.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+          <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=TBA" target="_blank" rel="noopener noreferrer" class="cta-pop inline-flex items-center gap-2 rounded-2xl bg-cat-neon px-6 py-3.5 font-display text-xl text-cat-ink tracking-wide animate-pulse-glow" data-pump>
+            Buy Now
+          </a>
+          <a href="https://dexscreener.com/robinhood/TBA" target="_blank" rel="noopener noreferrer" class="cta-pop inline-flex items-center gap-2 rounded-2xl bg-cat-800 border-4 border-cat-neon px-6 py-3 font-display text-xl text-cat-neon tracking-wide" data-pump>
+            Chart
+          </a>
+          <button type="button" id="copy-ca-hero" class="cta-pop inline-flex items-center gap-2 rounded-2xl bg-cat-900/80 border-4 border-cat-400 px-5 py-3 font-extrabold text-cat-slime" data-pump>
+            <span class="uppercase text-xs tracking-widest text-cat-300">CA</span>
+            <span id="ca-display-hero" class="font-mono text-sm sm:text-base truncate max-w-[10rem] sm:max-w-[14rem]">TBA</span>
+            <span class="text-cat-neon">⎘</span>
+          </button>
+        </div>
+        <p class="mt-4 text-sm font-bold uppercase tracking-widest text-cat-400">$psyopcat · Robinhood ETH</p>
+      </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="border-y-4 border-cat-neon/40 bg-cat-900/80 overflow-hidden py-3">
+      <div class="flex whitespace-nowrap animate-marquee font-display text-2xl text-cat-neon tracking-wider">
+        <span class="mx-6">$psyopcat</span><span class="mx-6">·</span>
+        <span class="mx-6">CHAOS MODE</span><span class="mx-6">·</span>
+        <span class="mx-6">VIRAL ENERGY</span><span class="mx-6">·</span>
+        <span class="mx-6">STEALTH MOVES</span><span class="mx-6">·</span>
+        <span class="mx-6">CLEVER MEMES</span><span class="mx-6">·</span>
+        <span class="mx-6">ROBINHOOD ETH</span><span class="mx-6">·</span>
+        <span class="mx-6">$psyopcat</span><span class="mx-6">·</span>
+        <span class="mx-6">CHAOS MODE</span><span class="mx-6">·</span>
+        <span class="mx-6">VIRAL ENERGY</span><span class="mx-6">·</span>
+        <span class="mx-6">STEALTH MOVES</span><span class="mx-6">·</span>
+        <span class="mx-6">CLEVER MEMES</span><span class="mx-6">·</span>
+        <span class="mx-6">ROBINHOOD ETH</span><span class="mx-6">·</span>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section id="about" class="relative py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div class="relative order-2 lg:order-1">
+            <div class="absolute -inset-3 rounded-[2rem] bg-cat-neon/20 blur-xl"></div>
+            <img src="about.png" alt="About psyopcat" class="relative w-full rounded-[2rem] border-4 border-cat-neon object-cover shadow-[8px_8px_0_#052e16] animate-float" onerror="this.onerror=null;this.src='logo.png';" data-pump />
+          </div>
+          <div class="order-1 lg:order-2">
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-cat-neon cat-outline mb-6" data-pump>About $psyopcat</h2>
+            <p class="text-lg sm:text-xl font-bold text-cat-100/90 leading-relaxed mb-5">
+              PsyopCat spreads chaos with clever memes, stealth moves, and unstoppable viral energy across crypto.
+            </p>
+            <p class="text-base sm:text-lg font-semibold text-cat-200/80 leading-relaxed mb-8">
+              Born for the timeline and built for the chain — $psyopcat is the cartoon chaos agent on Robinhood ETH. One brain, infinite psyops, zero chill.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://t.me/psyopcatRH" target="_blank" rel="noopener noreferrer" class="cta-pop inline-flex items-center gap-2 rounded-xl bg-[#229ED9] px-4 py-2.5 font-extrabold text-white" data-pump>
+                <img src="tg.png" alt="" class="h-7 w-7 rounded-full object-cover" />
+                Telegram
+              </a>
+              <a href="https://x.com/psyopcatRH" target="_blank" rel="noopener noreferrer" class="cta-pop social-x inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-extrabold text-white" data-pump>
+                <img src="x.png" alt="" class="h-6 w-6 object-contain" />
+                Follow on X
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Buy -->
+    <section id="howtobuy" class="relative py-20 sm:py-28 border-y-4 border-cat-600/30 bg-cat-950/50">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="text-center mb-14">
+          <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-cat-neon cat-outline mb-4" data-pump>How to Buy</h2>
+          <p class="text-lg font-bold text-cat-200 max-w-2xl mx-auto">
+            Grab $psyopcat on Robinhood ETH in four simple chaos steps.
+          </p>
+        </div>
+
+        <ol class="grid sm:grid-cols-2 gap-6 lg:gap-8">
+          <li class="relative rounded-3xl border-4 border-cat-500/60 bg-cat-900/60 p-6 sm:p-8 hover:border-cat-neon transition-colors" data-pump>
+            <span class="step-num inline-flex h-12 w-12 items-center justify-center rounded-2xl font-display text-2xl text-cat-ink mb-5">1</span>
+            <h3 class="font-display text-2xl text-cat-slime mb-3">Get a Wallet</h3>
+            <p class="font-semibold text-cat-100/85 leading-relaxed">
+              Install a Web3 wallet (like MetaMask or Rabby) and create or import your account. Keep your seed phrase secret.
+            </p>
+          </li>
+          <li class="relative rounded-3xl border-4 border-cat-500/60 bg-cat-900/60 p-6 sm:p-8 hover:border-cat-neon transition-colors" data-pump>
+            <span class="step-num inline-flex h-12 w-12 items-center justify-center rounded-2xl font-display text-2xl text-cat-ink mb-5">2</span>
+            <h3 class="font-display text-2xl text-cat-slime mb-3">Fund with ETH</h3>
+            <p class="font-semibold text-cat-100/85 leading-relaxed">
+              Add Robinhood ETH network support and bridge or transfer ETH so you can pay for gas and swaps.
+            </p>
+          </li>
+          <li class="relative rounded-3xl border-4 border-cat-500/60 bg-cat-900/60 p-6 sm:p-8 hover:border-cat-neon transition-colors" data-pump>
+            <span class="step-num inline-flex h-12 w-12 items-center justify-center rounded-2xl font-display text-2xl text-cat-ink mb-5">3</span>
+            <h3 class="font-display text-2xl text-cat-slime mb-3">Open Uniswap</h3>
+            <p class="font-semibold text-cat-100/85 leading-relaxed">
+              Hit Buy Now, connect your wallet on Uniswap, and select the Robinhood chain with $psyopcat as the output.
+            </p>
+          </li>
+          <li class="relative rounded-3xl border-4 border-cat-500/60 bg-cat-900/60 p-6 sm:p-8 hover:border-cat-neon transition-colors" data-pump>
+            <span class="step-num inline-flex h-12 w-12 items-center justify-center rounded-2xl font-display text-2xl text-cat-ink mb-5">4</span>
+            <h3 class="font-display text-2xl text-cat-slime mb-3">Swap &amp; Hold</h3>
+            <p class="font-semibold text-cat-100/85 leading-relaxed">
+              Enter the amount, confirm the swap, and welcome to the psyop. Track the chart on Dexscreener anytime.
+            </p>
+          </li>
+        </ol>
+
+        <div class="mt-12 flex flex-wrap justify-center gap-4">
+          <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=TBA" target="_blank" rel="noopener noreferrer" class="cta-pop inline-flex rounded-2xl bg-cat-neon px-8 py-4 font-display text-2xl text-cat-ink" data-pump>
+            Buy $psyopcat
+          </a>
+          <a href="https://dexscreener.com/robinhood/TBA" target="_blank" rel="noopener noreferrer" class="cta-pop inline-flex rounded-2xl border-4 border-cat-neon bg-cat-800 px-8 py-3.5 font-display text-2xl text-cat-neon" data-pump>
+            View Chart
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CA + Chart -->
+    <section id="chart" class="relative py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="text-center mb-10">
+          <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-cat-neon cat-outline mb-4" data-pump>Contract &amp; Chart</h2>
+          <p class="font-bold text-cat-200 mb-6">Copy the CA and watch $psyopcat go parabolic.</p>
+
+          <div class="mx-auto flex max-w-3xl flex-col sm:flex-row items-stretch sm:items-center gap-3 rounded-2xl border-4 border-cat-neon bg-cat-900/80 p-3 sm:p-4" data-pump>
+            <div class="flex-1 min-w-0 text-left px-2">
+              <p class="text-xs font-extrabold uppercase tracking-widest text-cat-400 mb-1">Contract Address</p>
+              <p id="ca-full" class="font-mono text-sm sm:text-base text-cat-slime break-all">TBA</p>
+            </div>
+            <button type="button" id="copy-ca" class="cta-pop shrink-0 rounded-xl bg-cat-neon px-6 py-3 font-display text-lg text-cat-ink" data-pump>
+              Copy CA
+            </button>
+          </div>
+          <p id="copy-feedback" class="mt-3 h-6 text-sm font-extrabold text-cat-neon opacity-0 transition-opacity">Copied to clipboard ✓</p>
+        </div>
+
+        <div class="rounded-[1.5rem] overflow-hidden border-4 border-cat-neon shadow-[8px_8px_0_#052e16] bg-cat-950" data-pump>
+          <iframe
+            title="Dexscreener chart for psyopcat"
+            class="w-full h-[480px] sm:h-[560px] lg:h-[640px]"
+            src="https://dexscreener.com/robinhood/TBA?embed=1&theme=dark&trades=0&info=0"
+            allow="clipboard-write"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t-4 border-cat-neon/40 bg-cat-ink py-12">
+    <div class="mx-auto max-w-6xl px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3" data-pump>
+        <img src="logo.png" alt="" class="h-14 w-14 rounded-full border-4 border-cat-500 object-cover" />
+        <div>
+          <p class="font-display text-2xl text-cat-neon">psyopcat</p>
+          <p class="text-sm font-bold text-cat-400">$psyopcat · Robinhood ETH</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://t.me/psyopcatRH" target="_blank" rel="noopener noreferrer" class="inline-flex h-12 w-12 items-center justify-center rounded-full overflow-hidden border-2 border-cat-500 hover:scale-110 transition-transform" data-pump aria-label="Telegram">
+          <img src="tg.png" alt="Telegram" class="h-full w-full object-cover" />
+        </a>
+        <a href="https://x.com/psyopcatRH" target="_blank" rel="noopener noreferrer" class="social-x inline-flex h-12 w-12 items-center justify-center rounded-full overflow-hidden hover:scale-110 transition-transform" data-pump aria-label="X">
+          <img src="x.png" alt="X" class="h-8 w-8 object-contain" />
+        </a>
+      </div>
+      <p class="text-center sm:text-right text-xs font-bold text-cat-500 max-w-xs">
+        Memes only. Not financial advice. DYOR. PsyopCat spreads chaos — you hold the bag.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const CA = 'TBA';
+      const layer = document.getElementById('dollar-layer');
+      const feedback = document.getElementById('copy-feedback');
+
+      function spawnDollars(x, y) {
+        const offsets = [
+          { dx: -18, dy: -6 },
+          { dx: 0, dy: -14 },
+          { dx: 18, dy: -4 },
+        ];
+        offsets.forEach(function (o, i) {
+          const el = document.createElement('span');
+          el.className = 'dollar-particle';
+          el.textContent = '$';
+          el.style.left = (x + o.dx) + 'px';
+          el.style.top = (y + o.dy) + 'px';
+          el.style.animationDelay = (i * 0.05) + 's';
+          el.style.fontSize = (1.4 + i * 0.25) + 'rem';
+          layer.appendChild(el);
+          setTimeout(function () { el.remove(); }, 800);
+        });
+      }
+
+      document.addEventListener('mouseover', function (e) {
+        const target = e.target.closest('[data-pump], a, button');
+        if (!target || target === document.body) return;
+        if (target.dataset.pumped === '1') return;
+        target.dataset.pumped = '1';
+        const rect = target.getBoundingClientRect();
+        spawnDollars(rect.left + rect.width / 2, rect.top + rect.height / 3);
+        setTimeout(function () { delete target.dataset.pumped; }, 400);
+      }, true);
+
+      async function copyCA() {
+        try {
+          await navigator.clipboard.writeText(CA);
+        } catch (_) {
+          const ta = document.createElement('textarea');
+          ta.value = CA;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        if (feedback) {
+          feedback.classList.remove('opacity-0');
+          feedback.classList.add('opacity-100');
+          setTimeout(function () {
+            feedback.classList.add('opacity-0');
+            feedback.classList.remove('opacity-100');
+          }, 1800);
+        }
+      }
+
+      ['copy-ca', 'copy-ca-hero'].forEach(function (id) {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', copyCA);
+      });
+    })();
+  </script>
+</body>
+</html>
